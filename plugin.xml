@@ -1,4 +1,4 @@
-<plugin name='app-info' version='0.1.1' grailsVersion='1.1 &gt; *'>
+<plugin name='app-info' version='0.2' grailsVersion='1.1 &gt; *'>
   <author>Burt Beckwith</author>
   <authorEmail>burt@burtbeckwith.com</authorEmail>
   <title>Application Info</title>
