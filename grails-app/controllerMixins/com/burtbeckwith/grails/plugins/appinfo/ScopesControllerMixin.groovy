@@ -1,6 +1,5 @@
 package com.burtbeckwith.grails.plugins.appinfo
 
-import com.burtbeckwith.grails.plugins.appinfo.ContextListener
 import com.burtbeckwith.grails.plugins.dynamiccontroller.DynamicControllerManager
 import com.burtbeckwith.grails.plugins.dynamiccontroller.DynamicDelegateController
 
