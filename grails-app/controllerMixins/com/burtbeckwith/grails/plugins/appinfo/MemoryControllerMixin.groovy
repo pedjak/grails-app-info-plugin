@@ -4,6 +4,7 @@ import java.lang.management.ManagementFactory
 import java.lang.management.MemoryPoolMXBean
 import java.lang.management.MemoryType
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
@@ -70,7 +71,8 @@ class MemoryControllerMixin {
 	}
 
 	private float formatMB(long value) {
-		String formatted = new DecimalFormat('.000').format(value / 1024.0 / 1024.0)
+		String formatted = new DecimalFormat('.000', new DecimalFormatSymbols(Locale.ENGLISH)).format(
+			value / 1024.0 / 1024.0)
 		formatted.toFloat()
 	}
 }
