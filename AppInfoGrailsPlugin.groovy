@@ -3,7 +3,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class AppInfoGrailsPlugin {
 
-	String version = '0.1.1'
+	String version = '0.2'
 	String grailsVersion = '1.1 > *'
 	def dependsOn = ['dynamicController': '0.2 > *',
 	                 'googleVisualization': '0.2.1 > *',
