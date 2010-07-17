@@ -60,5 +60,10 @@ class GrailsTemplateProducer extends TemplateProducer {
 		_results.put outputFile.path, result
 	}
 
+	@Override
+	void produce(Map additionalContext, String templateName, File destination, String identifier, String fileType, String rootContext) {
+		produce additionalContext, templateName, destination, identifier
+	}
+
 	Map<String, String> getResults() { _results }
 }
