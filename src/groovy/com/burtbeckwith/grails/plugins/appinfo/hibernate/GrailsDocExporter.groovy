@@ -18,8 +18,6 @@ import org.springframework.util.FileCopyUtils
  */
 class GrailsDocExporter extends AbstractExporter {
 
-	//	private static final String FILE_HEADER = 'doc/header.html'
-
 	private final String _dotExePath
 
 	private DocHelper _docHelper
@@ -125,8 +123,8 @@ class GrailsDocExporter extends AbstractExporter {
 		stdin.write dot.bytes
 		stdin.flush()
 		stdin.close()
-		p.waitFor()
 		def result = FileCopyUtils.copyToByteArray(p.inputStream)
+		p.waitFor()
 
 		//		println "[STDERR] $p.err.text"
 		if ('cmap' == extension) {
