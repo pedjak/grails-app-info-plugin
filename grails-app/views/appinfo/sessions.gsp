@@ -1,12 +1,20 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Sessions</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#sessions').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
-<table style='width: 100%' border='1'>
-	<caption>Sessions</caption>
+<div id="sessionsHolder">
+<h2>Sessions</h2>
+<table id="sessions" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>ID</th>
@@ -49,4 +57,7 @@
 	</g:each>
 	</tbody>
 </table>
+</div>
+
 </body>
+

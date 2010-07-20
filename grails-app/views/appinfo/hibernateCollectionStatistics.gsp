@@ -1,14 +1,22 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Collection Cache Statistics</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#stats').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
 <g:render template='/appinfo/hibernateStatisticsHeader'/>
 
-<table>
-	<caption>Hibernate Collection Cache Statistics: ${collection}</caption>
+<div id="statsHolder">
+<h2>Hibernate Collection Cache Statistics: ${collection}</h2>
+<table id="stats" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th><th>Value</th></tr>
 	</thead>
@@ -20,3 +28,4 @@
 </table>
 
 </body>
+

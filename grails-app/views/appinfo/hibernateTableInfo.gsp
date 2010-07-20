@@ -1,6 +1,18 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Mappings - Table Info</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#tableInfo').dataTable();
+	$('#columnSummaryTable').dataTable();
+	$('#primaryKeyTable').dataTable();
+	$('#foreignKeysTable').dataTable();
+	$('#uniqueKeysTable').dataTable();
+	$('#indexesTable').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
@@ -9,8 +21,9 @@
 
 <p>${table.comment}</p>
 
-<table border='1'>
-	<caption>Table ${table.name}</caption>
+<div id="tableInfoHolder">
+<h2>Table '${table.name}'</h2>
+<table id="tableInfo" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead><tr><th>Name</th><th>Value</th></tr></thead>
 	<tbody>
 		<tr><td>Schema</td><td>${dochelper.getQualifiedSchemaName(table)}&nbsp;</td></tr>
@@ -30,9 +43,10 @@
 <br/>
 
 <a name="column_summary"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+<div id="columnSummaryTableHolder">
+<h2>Column Summary</h2>
+<table id="columnSummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan="9">Column Summary</th></tr>
 		<tr>
 			<th width="14%">Name</th>
 			<th width="14%">SqlType</th>
@@ -62,9 +76,14 @@
 <br/>
 
 <a name="primary_key"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+<div id="primaryKeyTableHolder">
+<h2>Primary Key</h2>
+<table id="primaryKeyTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan="2">Primary Key</th></tr>
+		<tr>
+			<th>Name</th>
+			<th>Columns</th>
+		</tr>
 	</thead>
 	<tbody>
 <g:if test='${table.hasPrimaryKey()}'>
@@ -96,9 +115,10 @@
 <br/>
 
 <a name="foreign_keys"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+<div id="foreignKeysTableHolder">
+<h2>Foreign Keys</h2>
+<table id="foreignKeysTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan='8'>Foreign Keys</th></tr>
 		<tr>
 			<th>Name</th>
 			<th>Referenced Table</th>
@@ -139,9 +159,11 @@
 <br/>
 
 <a name="unique_keys"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+
+<div id="uniqueKeysTableHolder">
+<h2>Unique Keys</h2>
+<table id="uniqueKeysTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan='6'>Unique Keys</th></tr>
 		<tr>
 			<th>Name</th>
 			<th>Columns</th>
@@ -174,9 +196,10 @@
 <br/>
 
 <a name="indexes"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+<div id="indexesTableHolder">
+<h2>Indexes</h2>
+<table id="indexesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan='5'>Indexes</th></tr>
 		<tr>
 			<th>Name</th>
 			<th>Columns</th>
@@ -206,3 +229,4 @@
 <br/><br/>
 
 </body>
+

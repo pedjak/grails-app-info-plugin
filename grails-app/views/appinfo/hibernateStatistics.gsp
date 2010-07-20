@@ -1,14 +1,25 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Statistics</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#statistics').dataTable();
+	$('#entityStatistics').dataTable();
+	$('#collectionStatistics').dataTable();
+	$('#queryCacheStatistics').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
 <g:render template='/appinfo/hibernateStatisticsHeader'/>
 
-<table>
-	<caption>Hibernate Statistics (<g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(statistics.startTime)}'/>)</caption>
+<div id="statisticsHolder">
+<h2>Hibernate Statistics (<g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(statistics.startTime)}'/>)</h2>
+<table id="statistics" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th><th>Value</th></tr>
 	</thead>
@@ -19,8 +30,9 @@
 	</tbody>
 </table>
 
-<table>
-	<caption>Hibernate Entity Statistics</caption>
+<div id="entityStatisticsHolder">
+<h2>Hibernate Entity Statistics</h2>
+<table id="entityStatistics" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th></tr>
 	</thead>
@@ -31,8 +43,9 @@
 	</tbody>
 </table>
 
-<table>
-	<caption>Hibernate Collection Statistics</caption>
+<div id="collectionStatisticsHolder">
+<h2>Hibernate Collection Statistics</h2>
+<table id="collectionStatistics" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th></tr>
 	</thead>
@@ -43,8 +56,9 @@
 	</tbody>
 </table>
 
-<table>
-	<caption>Hibernate Query Cache Statistics</caption>
+<div id="queryCacheStatisticsHolder">
+<h2>Hibernate Query Cache Statistics</h2>
+<table id="queryCacheStatistics" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th></tr>
 	</thead>
@@ -56,3 +70,4 @@
 </table>
 
 </body>
+

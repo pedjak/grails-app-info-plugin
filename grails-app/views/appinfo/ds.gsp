@@ -1,14 +1,23 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Data Source</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#dataSource').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
+
 <g:form action='updateDataSource'>
 
-<table>
-	<caption>Data Source (${dataSource.class.name})</caption>
-	<thead><tr><th>Name</th><th>Value</th></tr></thead>
+<div id="dataSourceHolder">
+<h2>Data Source (${dataSource.class.name})</h2>
+<table id="dataSource" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead><tr><th>Key</th><th>Value</th></thead>
 	<tbody>
 		<g:each var='property' in='${propertyInfo}'>
 		<tr>
@@ -25,8 +34,11 @@
 		</g:each>
 	</tbody>
 </table>
+</div>
 
 <input type='submit' value='Update' />
 
 </g:form>
+
 </body>
+

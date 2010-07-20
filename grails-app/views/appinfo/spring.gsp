@@ -1,17 +1,28 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Spring Beans</title>
+
+<g:javascript>
+$(document).ready(function() {
+	<g:each var='entry' in='${beanInfo}'>
+	$('#${entry.key}Table').dataTable();
+	</g:each>
+	$('#parentTable').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
-<table border='1'>
-	<caption>Spring Beans</caption>
+<h1>Main Context ${ctx.displayName} (${ctx.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.startupDate)}'/>)</h1>
+
+<g:each var='entry' in='${beanInfo}'>
+
+<div id="${entry.key}TableHolder">
+<h2>${entry.key}</h2>
+<table id="${entry.key}Table" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-	<tr><th colspan='7'>
-	${ctx.displayName} (${ctx.beanDefinitionCount} beans, started at
-		<g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.startupDate)}'/>)
-	</th></tr>
 	<tr>
 		<th>Name</th>
 		<th>Class</th>
@@ -23,8 +34,6 @@
 	</tr>
 	</thead>
 	<tbody>
-<g:each var='entry' in='${beanInfo}'>
-	<tr><th colspan='7'>${entry.key}</th></tr>
 	<g:each var='desc' in='${entry.value}'>
 	<tr>
 		<td><%=desc.name%></td>
@@ -35,13 +44,27 @@
 		<td>${desc.parent ?: 'N/A'}</td>
 		<td>${desc.beanClassName ?: 'N/A'}</td>
 	</tr>
+	</g:each>
 	</tbody>
+</table>
+
 	</g:each>
-	</g:each>
-	<tr><th colspan='7'>
-	Parent Context - ${ctx.parent.displayName} (${ctx.parent.beanDefinitionCount} beans, started at
-		<g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.parent.startupDate)}'/>)
-	</th></tr>
+
+<div id="parentTableHolder">
+<h2>Parent Context - ${ctx.parent.displayName} (${ctx.parent.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.parent.startupDate)}'/>)</h2>
+<table id="parentTable" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Class</th>
+		<th>Scope</th>
+		<th>Lazy</th>
+		<th>Abstract</th>
+		<th>Parent</th>
+		<th>Bean Class Name</th>
+	</tr>
+	</thead>
+	<tbody>
 	<g:each var='desc' in='${parentBeans}'>
 	<tr>
 		<td><%=desc.name%></td>
@@ -52,6 +75,9 @@
 		<td>${desc.parent ?: 'N/A'}</td>
 		<td>${desc.beanClassName ?: 'N/A'}</td>
 	</tr>
-	</tbody>
 	</g:each>
+	</tbody>
 </table>
+
+</body>
+

@@ -1,6 +1,15 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Mappings - Entity Info</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#identifierSummaryTable').dataTable();
+	$('#propertySummaryTable').dataTable();
+	$('#details').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
@@ -29,9 +38,11 @@ ${clazz.qualifiedDeclarationName}
 <g:if test='${clazz.hasIdentifierProperty()}'>
 <p>
 <a name="identifier_summary"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+
+<div id="identifierSummaryTableHolder">
+<h2>Identifier Summary</h2>
+<table id="identifierSummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan="9">Identifier Summary</th></tr>
 		<tr>
 			<th width="14%">Name</th>
 			<th width="14%">Column</th>
@@ -102,10 +113,12 @@ ${clazz.qualifiedDeclarationName}
 </table>
 </g:if>
 <p>
+
 <a name="property_summary"></a>
-<table border="1" width="100%" cellpadding="3" cellspacing="0">
+<div id="propertySummaryTableHolder">
+<h2>Property Summary</h2>
+<table id="propertySummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan="9">Property Summary</th></tr>
 		<tr>
 			<th width="14%">Name</th>
 			<th width="14%">Column</th>
@@ -138,7 +151,7 @@ ${clazz.qualifiedDeclarationName}
 
 </g:else>
 			<td width="14%" rowspan="${rowspan}">
-				${getterName} (<a href='#property_summary'>get</a> / <a href='#property_summary'>set</a>)
+				${getterName} (<a href='#property_summary'>get</a>&nbsp;/&nbsp;<a href='#property_summary'>set</a>)
 			</td>
 
 			<td width="14%" rowspan="${rowspan}">
@@ -169,9 +182,10 @@ ${clazz.qualifiedDeclarationName}
 	</tbody>
 </table>
 
-<table border='1' width='100%' cellpadding='3' cellspacing='0'>
+<div id="detailsHolder">
+<h2>Details</h2>
+<table id="details" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
-		<tr><th colspan='2'>Details</th></tr>
 		<tr><th>Name</th><th>Value</th></tr>
 	</thead>
 	<tbody>
@@ -242,3 +256,4 @@ ${clazz.qualifiedDeclarationName}
 </table>
 
 </body>
+

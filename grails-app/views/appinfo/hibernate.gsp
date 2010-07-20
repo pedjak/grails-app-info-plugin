@@ -1,14 +1,35 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Configuration</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#propertiesTable').dataTable();
+	$('#mappingsTable').dataTable();
+	$('#importsTable').dataTable();
+	$('#auxTable').dataTable();
+	$('#namedQueriesTable').dataTable();
+	$('#namedSqlQueriesTable').dataTable();
+	$('#typeDefsTable').dataTable();
+	$('#filtersTable').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
 <g:render template='/appinfo/hibernateCombos'/>
 
-<table border='1' style='width: 600px'>
-	<caption>Properties</caption>
+<div id="propertiesTableHolder">
+<h2>Properties</h2>
+<table id="propertiesTable" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>Dialect</td>
@@ -35,12 +56,20 @@
 </table>
 
 <br/>
+<br/>
 
 <g:set var='defaultSchema' value="${hibernateProperties.'hibernate.default_schema'}" />
 <g:set var='defaultCatalog' value="${hibernateProperties.'hibernate.default_catalog'}" />
 
-<table border='1' style='width: 600px'>
-	<caption>Mappings Info</caption>
+<div id="mappingsTableHolder">
+<h2>Mappings Info</h2>
+<table id="mappingsTable" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
 	<tbody>
 		<tr>
 			<td>Schema Name</td>
@@ -78,9 +107,17 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>Imports</caption>
+<div id="importsTableHolder">
+<h2>Imports</h2>
+<table id="importsTable" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
 	<tbody>
 		<g:each var='entry' in='${mappings.@imports}'>
 		<tr>
@@ -92,9 +129,11 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>Auxiliary Database Objects</caption>
+<div id="auxTableHolder">
+<h2>Auxiliary Database Objects</h2>
+<table id="auxTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>Create String</th>
@@ -114,9 +153,11 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>Named Queries</caption>
+<div id="namedQueriesTableHolder">
+<h2>Named Queries</h2>
+<table id="namedQueriesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -154,9 +195,11 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>Named SQL Queries</caption>
+<div id="namedSqlQueriesTableHolder">
+<h2>Named SQL Queries</h2>
+<table id="namedSqlQueriesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -202,9 +245,11 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>TypeDefs</caption>
+<div id="typeDefsTableHolder">
+<h2>TypeDefs</h2>
+<table id="typeDefsTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -224,9 +269,11 @@
 </table>
 
 <br/>
+<br/>
 
-<table border='1' style='width: 600px'>
-	<caption>Filter Definitions</caption>
+<div id="filtersTableHolder">
+<h2>Filter Definitions</h2>
+<table id="filtersTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
 			<th>Name</th>

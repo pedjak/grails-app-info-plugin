@@ -1,14 +1,21 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Grails Properties</title>
+
+<g:javascript>
+$(document).ready(function() {
+	$('#grailsProperties').dataTable();
+});
+</g:javascript>
+
 </head>
 
 <body>
 
-<g:form>
-<table border='1'>
-	<caption>Grails Properties</caption>
-	<thead><tr><th>Name</th><th>Value</th></tr></thead>
+<div id="grailsPropertiesHolder">
+<h2>Grails Properties</h2>
+<table id="grailsProperties" cellpadding="0" cellspacing="0" border="0" class="display">
+	<thead><tr><th>Key</th><th>Value</th></thead>
 	<tbody>
 	<g:each var='propertyName' in='${grailsProperties.keySet() - "log4j"}'>
 		<tr>
@@ -25,8 +32,7 @@
 	</g:each>
 	</tbody>
 </table>
-</g:form>
-
-<br />
+</div>
 
 </body>
+

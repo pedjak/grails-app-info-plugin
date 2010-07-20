@@ -3,18 +3,14 @@
 <head>
 <title><g:layoutTitle default='Application Information' /></title>
 
-<link rel='stylesheet' href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 <link rel='shortcut icon' href='${resource(dir: '/images', file: 'favicon.ico', plugin: 'none')}' type='image/x-icon' />
+
+<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'table.css', plugin: 'appInfo')}"/>
+<link rel='stylesheet' href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.slate.css', plugin: 'appInfo')}"/>
-<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'table.css', plugin: 'appInfo')}"/>
 
 <g:javascript library="jquery" plugin="jquery" />
-
-<g:javascript src='jquery/jquery.positionBy.js' plugin='appInfo'/>
-<g:javascript src='jquery/jquery.bgiframe.js' plugin='appInfo'/>
-<g:javascript src='jquery/jquery.jdMenu.js' plugin='appInfo'/>
-<g:javascript src='jquery/jquery.dataTables.min.js' plugin='appInfo'/>
 
 <g:layoutHead />
 
@@ -66,6 +62,10 @@
 
 <br/>
 
+<g:javascript src='jquery/jquery.positionBy.js' plugin='appInfo'/>
+<g:javascript src='jquery/jquery.bgiframe.js' plugin='appInfo'/>
+<g:javascript src='jquery/jquery.jdMenu.js' plugin='appInfo'/>
+<g:javascript src='jquery/jquery.dataTables.min.js' plugin='appInfo'/>
 
 <g:layoutBody />
 
