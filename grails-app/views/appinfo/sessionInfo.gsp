@@ -1,12 +1,22 @@
 <head>
 <meta name='layout' content='appinfo' />
 <title>Session Scope</title>
+
+<g:javascript>
+	$(document).ready( function () {
+		$('#session').dataTable();
+	});
+</g:javascript>
+
 </head>
 
 <body>
+<h1>Session Scope</h1>
 
-<table style='width: 100%' border='1'>
-	<caption>Session Variables (Session ID ${session.id}, Start: <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(session.creationTime)}'/>)</caption>
+<h2>Session Variables</h2>
+<strong>Session Id:</strong> ${session.id}  &nbsp;&nbsp;&nbsp;<strong>Start:</strong> <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(session.creationTime)}'/><br/><br/>
+
+<table id="session" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th><th>Value</th></tr>
 	</thead>

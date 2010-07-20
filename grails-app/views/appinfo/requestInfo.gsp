@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<h1>Request Scope</h1>
 
 <div id="requestInfoHolder">
 <h2>Request Info</h2>
@@ -42,6 +43,7 @@
 			<th>Version</th>
 		</tr>
 	</thead>
+	<tbody>
 	<g:each var='cookie' in='${request.cookies}'>
 	<tr>
 		<td>${cookie.name}&nbsp;</td>
@@ -54,6 +56,7 @@
 		<td>${cookie.version}&nbsp;</td>
 	</tr>
 	</g:each>
+	</tbody>
 	</table>
 </div>
 	
@@ -78,12 +81,14 @@
 				<thead>
 					<tr><th>Name</th><th>Value</th></tr>
 				</thead>
+				<tbody>
 				<g:each var='attributeName' in='${request.attributeNames}'>
 				<tr>
 					<td>${attributeName}&nbsp;</td>
 					<td>${request.getAttribute(attributeName)}&nbsp;</td>
 				</tr>
 				</g:each>
+				</tbody>
 			</table>
 
 </body>
