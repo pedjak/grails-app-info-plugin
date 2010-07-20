@@ -34,13 +34,68 @@ class Log4jControllerMixin {
 			logger1.name <=> logger2.name
 		}
 
-		def loggers = []
+		def spring = []
+		def hibernate = []
+		def codec = []
+		def controller = []
+		def controllerMixin = []
+		def domain = []
+		def filters = []
+		def service = []
+		def taglib = []
+		def grails = []
+		def groovy = []
+		def misc = []
 		for (logger in sortedLoggers) {
-			loggers << [name: logger.name, level: logger.effectiveLevel.toString()]
+			String name = logger.name
+			def info = [name: name, level: logger.effectiveLevel.toString()]
+			if (name.startsWith('grails.app.codec')) {
+				codec << info
+			}
+			else if (name.startsWith('grails.app.controller')) {
+				controller << info
+			}
+			else if (name.startsWith('grails.app.domain')) {
+				domain << info
+			}
+			else if (name.startsWith('grails.app.controller')) {
+				controller << info
+			}
+			else if (name.startsWith('grails.app.controllerMixin')) {
+				controllerMixin << info
+			}
+			else if (name.startsWith('grails.app.filters')) {
+				filters << info
+			}
+			else if (name.startsWith('grails.app.service')) {
+				service << info
+			}
+			else if (name.startsWith('grails.app.tagLib')) {
+				taglib << info
+			}
+			else if (name == 'grails' || name.startsWith('grails.') || name.startsWith('org.codehaus.groovy.grails.')) {
+				grails << info
+			}
+			else if (name == 'groovy.' || name.startsWith('groovy.') || name.startsWith('org.codehaus.groovy.')) {
+				groovy << info
+			}
+			else if (name.startsWith('org.hibernate')) {
+				hibernate << info
+			}
+			else if (name.startsWith('org.springframework')) {
+				spring << info
+			}
+			else {
+				misc << info
+			}
 		}
 
 		render view: '/appinfo/logging',
-		       model: [loggers: loggers, allLevels: LOG_LEVELS.keySet(), log4jXml: estimateLog4j()]
+		       model: [spring: spring, hibernate: hibernate, codec: codec,
+		               controller: controller, controllerMixin: controllerMixin,
+							domain: domain, filters: filters, service: service,
+							taglib: taglib, grails: grails, groovy: groovy, misc: misc,
+		               allLevels: LOG_LEVELS.keySet(), log4jXml: estimateLog4j()]
 	}
 
 	/**
