@@ -53,7 +53,7 @@ class PropertiesControllerMixin {
 			System.setProperty(name, value)
 		}
 
-		redirect action: 'systemProperties', controller: params.controller
+		redirect action: 'sysProperties', controller: params.controller
 	}
 
 	/**
@@ -95,8 +95,10 @@ class PropertiesControllerMixin {
 	 */
 	def updateDataSource = {
 
+		def realDataSource = dataSourceUnproxied ?: dataSource
+
 		def pds = [:]
-		BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(dataSource)
+		BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(realDataSource)
 		for (pd in beanWrapper.propertyDescriptors) {
 			if (pd.writeMethod) {
 				pds[pd.writeMethod.name] = pd
@@ -122,14 +124,14 @@ class PropertiesControllerMixin {
 			paramName -= 'SETTER_'
 			def pd = pds[paramName]
 			if (pd.writeMethod.parameterTypes.length == 1) {
-				String oldValue = pd.readMethod.invoke(dataSource)?.toString()
+				String oldValue = pd.readMethod.invoke(realDataSource)?.toString()
 				if (value == oldValue) {
 					continue
 				}
 
 				try {
 					value = TYPE_CONVERTER.convertIfNecessary(value, pd.writeMethod.parameterTypes[0])
-					pd.writeMethod.invoke dataSource, value
+					pd.writeMethod.invoke realDataSource, value
 				}
 				catch (TypeMismatchException e) {
 					// ignore
