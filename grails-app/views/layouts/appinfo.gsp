@@ -9,6 +9,7 @@
 <link rel='stylesheet' href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.slate.css', plugin: 'appInfo')}"/>
+<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs.css', plugin: 'appInfo')}"/>
 
 <g:javascript library="jquery" plugin="jquery" />
 
@@ -23,6 +24,8 @@
 	</g:if>
 
 	<div>
+
+<div id="left">
 
 		<ul class="jd_menu jd_menu_slate">
 			<li><a class="accessible">Attributes</a>
@@ -60,12 +63,15 @@
 		</ul>
 	</div>
 
-<br/>
+</div>
+<div id="right">
+</div>
 
 <g:javascript src='jquery/jquery.positionBy.js' plugin='appInfo'/>
 <g:javascript src='jquery/jquery.bgiframe.js' plugin='appInfo'/>
 <g:javascript src='jquery/jquery.jdMenu.js' plugin='appInfo'/>
 <g:javascript src='jquery/jquery.dataTables.min.js' plugin='appInfo'/>
+<g:javascript src='jquery/jquery.tabs.min.js' plugin='appInfo'/>
 
 <g:layoutBody />
 

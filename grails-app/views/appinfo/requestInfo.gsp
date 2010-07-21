@@ -4,10 +4,11 @@
 
 <g:javascript>
 	$(document).ready( function () {
-		$('#requestInfo').dataTable();
-		$('#cookies').dataTable();
-		$('#headers').dataTable();
-		$('#attributes').dataTable();
+		$('#requestInfo').dataTable( { 'bAutoWidth': false } );
+		$('#cookies').dataTable( { 'bAutoWidth': false }  );
+		$('#headers').dataTable( { 'bAutoWidth': false } );
+		$('#attributes').dataTable( { 'bAutoWidth': false } );
+		$('ul.tabs').tabs('div.panes > div')
 	} );
 </g:javascript>
 
@@ -15,8 +16,15 @@
 <body>
 <h1>Request Scope</h1>
 
-<div id="requestInfoHolder">
-<h2>Request Info</h2>
+<ul class="tabs">
+	<li><a href="#">Request Info</a></li>
+	<li><a href="#">Cookies</a></li>
+	<li><a href="#">Headers</a></li>
+	<li><a href="#">Attributes</a></li>
+</ul>
+
+<div class='panes'>
+<div id="requestInfoHolder" class="tabPane">
 <table id="requestInfo" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead><tr><th>Key</th><th>Value</th></thead>
 	<tbody>
@@ -28,8 +36,7 @@
 </table>
 </div>
 
-<div id="cookiesHolder">
-<h2>Cookies</h2><br/>
+<div id="cookiesHolder" class="tabPane">
 <table id="cookies" >
 	<thead>
 		<tr>
@@ -60,8 +67,7 @@
 	</table>
 </div>
 	
-	
-		<h2>Headers</h2>
+<div id="headersHolder" class="tabPane">	
 		<table id="headers">
 				<thead>
 				<tr><th>Name</th><th>Value</th></tr>
@@ -75,8 +81,9 @@
 				</g:each>
 				</tbody>
 			</table>
-		
-		<h2>Attributes</h2>
+</div>
+
+<div id="attributesHolder" class="tabPane">
 			<table id="attributes">
 				<thead>
 					<tr><th>Name</th><th>Value</th></tr>
@@ -90,5 +97,7 @@
 				</g:each>
 				</tbody>
 			</table>
+</div>
+</div>
 
 </body>
