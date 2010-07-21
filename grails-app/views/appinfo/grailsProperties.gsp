@@ -12,8 +12,13 @@ $(document).ready(function() {
 
 <body>
 
+<br/>
+
 <div id="grailsPropertiesHolder">
 <h2>Grails Properties</h2>
+
+<br/>
+
 <table id="grailsProperties" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead><tr><th>Key</th><th>Value</th></thead>
 	<tbody>

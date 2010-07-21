@@ -7,7 +7,8 @@
 
 <g:render template='/appinfo/hibernateCombos'/>
 
-Class Name: ${entity}
+<h2>Class Name: ${entity}</h2>
+
 <br/>
 
 <hr/>

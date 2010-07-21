@@ -5,9 +5,10 @@
 <g:javascript>
 $(document).ready(function() {
 	<g:each var='entry' in='${beanInfo}'>
-	$('#${entry.key}Table').dataTable();
+	$('#${entry.key}Table').dataTable( { 'bAutoWidth': false } );
 	</g:each>
-	$('#parentTable').dataTable();
+	$('#parentTable').dataTable( { 'bAutoWidth': false } );
+	$('ul.tabs').tabs('div.panes > div')
 });
 </g:javascript>
 
@@ -15,12 +16,22 @@ $(document).ready(function() {
 
 <body>
 
-<h1>Main Context ${ctx.displayName} (${ctx.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.startupDate)}'/>)</h1>
+<h1>Main Context: ${ctx.displayName} (${ctx.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.startupDate)}'/>)</h1>
+
+<br/>
+
+<ul class="tabs">
+	<g:each var='entry' in='${beanInfo}'>
+	<li><a href="#">${entry.key}</a></li>
+	</g:each>
+	<li><a href="#">Parent Context</a></li>
+</ul>
+
+<div class='panes'>
 
 <g:each var='entry' in='${beanInfo}'>
 
-<div id="${entry.key}TableHolder">
-<h2>${entry.key}</h2>
+<div id="${entry.key}TableHolder" class="tabPane">
 <table id="${entry.key}Table" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -47,11 +58,14 @@ $(document).ready(function() {
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-	</g:each>
+</g:each>
 
-<div id="parentTableHolder">
-<h2>Parent Context - ${ctx.parent.displayName} (${ctx.parent.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.parent.startupDate)}'/>)</h2>
+<div id="parentTableHolder" class="tabPane">
+
+<h2>Parent Context: ${ctx.parent.displayName} (${ctx.parent.beanDefinitionCount} beans, started at <g:formatDate format='MM/dd/yyyy h:mm:ss a' date='${new Date(ctx.parent.startupDate)}'/>)</h2>
+
 <table id="parentTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -78,6 +92,8 @@ $(document).ready(function() {
 	</g:each>
 	</tbody>
 </table>
+</div>
+
+</div>
 
 </body>
-

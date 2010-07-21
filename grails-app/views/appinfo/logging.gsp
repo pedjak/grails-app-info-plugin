@@ -2,21 +2,25 @@
 <meta name='layout' content='appinfo' />
 <title>Loggers</title>
 
+<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs-accordion.css', plugin: 'appInfo')}"/>
+
 <g:javascript library="jquery" plugin="jquery" />
 <g:javascript>
 $(document).ready(function() {
-	$('#spring').dataTable();
-	$('#hibernate').dataTable();
-	$('#codec').dataTable();
-	$('#controller').dataTable();
-	$('#controllerMixin').dataTable();
-	$('#domain').dataTable();
-	$('#filters').dataTable();
-	$('#service').dataTable();
-	$('#taglib').dataTable();
-	$('#grails').dataTable();
-	$('#groovy').dataTable();
-	$('#misc').dataTable();
+	$('#spring').dataTable( { 'bAutoWidth': false } );
+	$('#hibernate').dataTable( { 'bAutoWidth': false } );
+	$('#codec').dataTable( { 'bAutoWidth': false } );
+	$('#controller').dataTable( { 'bAutoWidth': false } );
+	$('#controllerMixin').dataTable( { 'bAutoWidth': false } );
+	$('#domain').dataTable( { 'bAutoWidth': false } );
+	$('#filters').dataTable( { 'bAutoWidth': false } );
+	$('#service').dataTable( { 'bAutoWidth': false } );
+	$('#taglib').dataTable( { 'bAutoWidth': false } );
+	$('#grails').dataTable( { 'bAutoWidth': false } );
+	$('#groovy').dataTable( { 'bAutoWidth': false } );
+	$('#misc').dataTable( { 'bAutoWidth': false } );
+
+   $("#accordion").tabs("#accordion div.pane", {tabs: 'h2', effect: 'default', initialIndex: null});
 });
 </g:javascript>
 
@@ -27,7 +31,7 @@ $(document).ready(function() {
 <table style='width: 100%' border='1'>
 	<caption>Estimated log4j.xml</caption>
 	<tbody>
-	<tr><td><textarea style='width: 100%; height: 300px;'>
+	<tr><td><textarea id='appinfo_log4j'>
 <%=log4jXml%></textarea></td></tr>
 </table>
 
@@ -44,8 +48,10 @@ New Logger: <g:textField name='logger' size='75' />
 
 <br/>
 
-<div id="codecHolder">
-<h2>Codecs</h2>
+<div id="accordion" style='width:100%;'>
+
+<h2 class="current">Codecs</h2>
+<div id="codecHolder" class="pane" style="display:block">
 <table id="codec" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -69,11 +75,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="controllerHolder">
 <h2>Controllers</h2>
+<div id="controllerHolder" class="pane">
 <table id="controller" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -97,11 +102,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="controllerMixinHolder">
 <h2>Controller Mixins</h2>
+<div id="controllerMixinHolder" class="pane">
 <table id="controllerMixin" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -125,11 +129,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="domainHolder">
 <h2>Domain Classes</h2>
+<div id="domainHolder" class="pane">
 <table id="domain" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -153,11 +156,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="filtersHolder">
 <h2>Filters</h2>
+<div id="filtersHolder" class="pane">
 <table id="filters" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -181,11 +183,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="serviceHolder">
 <h2>Services</h2>
+<div id="serviceHolder" class="pane">
 <table id="service" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -209,11 +210,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="taglibHolder">
 <h2>TagLibs</h2>
+<div id="taglibHolder" class="pane">
 <table id="taglib" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -237,11 +237,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="grailsHolder">
 <h2>Grails</h2>
+<div id="grailsHolder" class="pane">
 <table id="grails" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -265,11 +264,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="groovyHolder">
 <h2>Groovy</h2>
+<div id="groovyHolder" class="pane">
 <table id="groovy" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -293,11 +291,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="springHolder">
 <h2>Spring</h2>
+<div id="springHolder" class="pane">
 <table id="spring" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -321,11 +318,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="hibernateHolder">
 <h2>Hibernate</h2>
+<div id="hibernateHolder" class="pane">
 <table id="hibernate" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -349,11 +345,10 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
-
-<div id="miscHolder">
 <h2>Misc</h2>
+<div id="miscHolder" class="pane">
 <table id="misc" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -377,8 +372,9 @@ New Logger: <g:textField name='logger' size='75' />
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/><br/>
+</div>
 
 <script>
 function generateParameters(theSelect, manual) {

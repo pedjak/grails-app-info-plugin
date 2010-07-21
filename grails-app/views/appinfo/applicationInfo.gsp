@@ -3,19 +3,27 @@
 <title>Application Scope</title>
 
 <g:javascript>
-	$(document).ready( function () {
-		$('#contextAttributes').dataTable();
-		$('#initParams').dataTable();	
-	});
+$(document).ready( function () {
+	$('#contextAttributes').dataTable( { 'bAutoWidth': false } );
+	$('#initParams').dataTable( { 'bAutoWidth': false } );
+	$('ul.tabs').tabs('div.panes > div')
+});
 </g:javascript>
 
 </head>
 
 <body>
-	
+
 <h1>Application-Scope Variables</h1>
 
-<h2>Context Attributes</h2>
+<ul class="tabs">
+	<li><a href="#">Context Attributes</a></li>
+	<li><a href="#">Init Params</a></li>
+</ul>
+
+<div class='panes'>
+
+<div id="contextAttributesHolder" class="tabPane">
 <table id="contextAttributes" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -32,8 +40,9 @@
 	</g:each>
 	</tbody>
 </table>
+</div>
 
-<h2>Init Params</h2>
+<div id="initParamsHolder" class="tabPane">
 <table id="initParams" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 	<tr>
@@ -50,5 +59,7 @@
 	</g:each>
 	</tbody>
 </table>
+</div>
 
+</div>
 </body>

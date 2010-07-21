@@ -4,9 +4,10 @@
 
 <g:javascript>
 $(document).ready(function() {
-	$('#identifierSummaryTable').dataTable();
-	$('#propertySummaryTable').dataTable();
-	$('#details').dataTable();
+	$('#identifierSummaryTable').dataTable( { 'bAutoWidth': false } );
+	$('#propertySummaryTable').dataTable( { 'bAutoWidth': false } );
+	$('#details').dataTable( { 'bAutoWidth': false } );
+	$('ul.tabs').tabs('div.panes > div')
 });
 </g:javascript>
 
@@ -33,14 +34,26 @@ ${clazz.qualifiedDeclarationName}
  ${clazz.getMetaAsString("clazz-description")}
 <br/>
 </g:if>
+<br/>
 <hr/>
+
+<br/>
+
+<ul class="tabs">
+	<g:if test='${clazz.hasIdentifierProperty()}'>
+	<li><a href="#">Identifier Summary</a></li>
+	</g:if>
+	<li><a href="#">Property Summary</a></li>
+	<li><a href="#">Details</a></li>
+</ul>
+
+<div class='panes'>
 
 <g:if test='${clazz.hasIdentifierProperty()}'>
 <p>
 <a name="identifier_summary"></a>
 
-<div id="identifierSummaryTableHolder">
-<h2>Identifier Summary</h2>
+<div id="identifierSummaryTableHolder" class="tabPane">
 <table id="identifierSummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -65,9 +78,8 @@ ${clazz.qualifiedDeclarationName}
 			<td width="14%">&nbsp;</td>
 		</g:if>
 		<g:else>
-			<td width="14%"><a href='#property_summary'>${column.name}</a>
+			<td width="14%"><a href='#property_summary'>${column.name}</a></td>
 		</g:else>
-			</td>
 	</g:if>
 	<g:else>
 			<td width="14%">&nbsp;</td>
@@ -99,24 +111,24 @@ ${clazz.qualifiedDeclarationName}
 </g:each>
 </g:if>
 <g:else>
-		<tr>
-			<td width="14%"><a href='#field_summary'>${clazz.identifierProperty.name}</a></td>
-			<td width="14%">Column</td>
-			<td width="14%">&nbsp; ${clazz.getJavaTypeName(clazz.identifierProperty, false)}</td>
-			<td width="58%">&nbsp;
-				<g:if test='${clazz.hasFieldJavaDoc(clazz.identifierProperty)}'>
-				${clazz.getFieldDescription(clazz.identifierProperty)}
-				</g:if>
-			</td>
-		</tr>
+	<tr>
+		<td width="14%"><a href='#field_summary'>${clazz.identifierProperty.name}</a></td>
+		<td width="14%">Column</td>
+		<td width="14%">&nbsp; ${clazz.getJavaTypeName(clazz.identifierProperty, false)}</td>
+		<td width="58%">&nbsp;
+			<g:if test='${clazz.hasFieldJavaDoc(clazz.identifierProperty)}'>
+			${clazz.getFieldDescription(clazz.identifierProperty)}
+			</g:if>
+		</td>
+	</tr>
 </g:else>
 </table>
+</div>
 </g:if>
 <p>
 
 <a name="property_summary"></a>
-<div id="propertySummaryTableHolder">
-<h2>Property Summary</h2>
+<div id="propertySummaryTableHolder" class="tabPane">
 <table id="propertySummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -142,9 +154,8 @@ ${clazz.qualifiedDeclarationName}
 			<td width="14%">&nbsp;</td>
 	</g:if>
 	<g:else>
-			<td width="14%"><a href='#property_summary'>${column.name}</a>
+			<td width="14%"><a href='#property_summary'>${column.name}</a></td>
 	</g:else>
-			</td>
 </g:if>
 <g:else>
 			<td width="14%">&nbsp;</td>
@@ -181,9 +192,9 @@ ${clazz.qualifiedDeclarationName}
 </g:each>
 	</tbody>
 </table>
+</div>
 
-<div id="detailsHolder">
-<h2>Details</h2>
+<div id="detailsHolder" class="tabPane">
 <table id="details" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr><th>Name</th><th>Value</th></tr>
@@ -254,6 +265,8 @@ ${clazz.qualifiedDeclarationName}
 		<tr><td>Lazy Properties Cacheable</td><td>${entity.lazyPropertiesCacheable}&nbsp;</td></tr>
 	</tbody>
 </table>
+</div>
+
+</div>
 
 </body>
-

@@ -4,7 +4,9 @@
 
 <g:javascript>
 $(document).ready(function() {
-	$('#dataSource').dataTable();
+	$('#dataSource').dataTable({
+		"bStateSave": true
+	});
 });
 </g:javascript>
 
@@ -12,10 +14,13 @@ $(document).ready(function() {
 
 <body>
 
+<br/>
+<span class='appinfo_warning'>Note: Only visible form element values will be submitted</span><br/><br/>
+
 <g:form action='updateDataSource'>
 
 <div id="dataSourceHolder">
-<h2>Data Source (${dataSource.class.name})</h2>
+<h2>Data Source (${dataSourceClassName})</h2>
 <table id="dataSource" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead><tr><th>Key</th><th>Value</th></thead>
 	<tbody>

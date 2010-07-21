@@ -66,37 +66,37 @@
 	</tbody>
 	</table>
 </div>
-	
-<div id="headersHolder" class="tabPane">	
-		<table id="headers">
-				<thead>
-				<tr><th>Name</th><th>Value</th></tr>
-				</thead>
-				<tbody>
-				<g:each var='headerName' in='${request.headerNames}'>
-				<tr>
-					<td>${headerName}&nbsp;</td>
-					<td>${request.getHeader(headerName)}&nbsp;</td>
-				</tr>
-				</g:each>
-				</tbody>
-			</table>
+
+<div id="headersHolder" class="tabPane">
+<table id="headers">
+	<thead>
+		<tr><th>Name</th><th>Value</th></tr>
+	</thead>
+	<tbody>
+		<g:each var='headerName' in='${request.headerNames}'>
+		<tr>
+			<td>${headerName}&nbsp;</td>
+			<td>${request.getHeader(headerName)}&nbsp;</td>
+		</tr>
+		</g:each>
+	</tbody>
+</table>
 </div>
 
 <div id="attributesHolder" class="tabPane">
-			<table id="attributes">
-				<thead>
-					<tr><th>Name</th><th>Value</th></tr>
-				</thead>
-				<tbody>
-				<g:each var='attributeName' in='${request.attributeNames}'>
-				<tr>
-					<td>${attributeName}&nbsp;</td>
-					<td>${request.getAttribute(attributeName)}&nbsp;</td>
-				</tr>
-				</g:each>
-				</tbody>
-			</table>
+<table id="attributes">
+	<thead>
+		<tr><th>Name</th><th>Value</th></tr>
+	</thead>
+	<tbody>
+		<g:each var='attributeName' in='${request.attributeNames}'>
+		<tr>
+			<td>${attributeName}&nbsp;</td>
+			<td>${request.getAttribute(attributeName)}&nbsp;</td>
+		</tr>
+		</g:each>
+	</tbody>
+</table>
 </div>
 </div>
 

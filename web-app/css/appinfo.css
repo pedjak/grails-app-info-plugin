@@ -1,0 +1,10 @@
+.appinfo_warning {
+	color: red;
+	font-weight: bold;
+}
+
+#appinfo_log4j {
+	width: 100%;
+	height: 200px;
+}
+

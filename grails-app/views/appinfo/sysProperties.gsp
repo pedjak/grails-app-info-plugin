@@ -4,13 +4,19 @@
 
 <g:javascript>
 $(document).ready(function() {
-	$('#systemProperties').dataTable();
+	$('#systemProperties').dataTable({
+		"bStateSave": true
+	});
 });
 </g:javascript>
 
 </head>
 
 <body>
+
+<br/>
+
+<span class='appinfo_warning'>Note: Only visible form element values will be submitted</span><br/><br/>
 
 <g:form action='updateProperties'>
 

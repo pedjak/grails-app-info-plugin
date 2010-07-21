@@ -6,7 +6,8 @@
 <link rel='shortcut icon' href='${resource(dir: '/images', file: 'favicon.ico', plugin: 'none')}' type='image/x-icon' />
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'table.css', plugin: 'appInfo')}"/>
-<link rel='stylesheet' href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
+<link rel="stylesheet" media="screen" href="${resource(dir: 'css', file: 'appinfo.css', plugin: 'appInfo')}"/>
+<link rel='stylesheet' media="screen" href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.slate.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs.css', plugin: 'appInfo')}"/>
@@ -25,7 +26,7 @@
 
 	<div>
 
-<div id="left">
+	<div id="left">
 
 		<ul class="jd_menu jd_menu_slate">
 			<li><a class="accessible">Attributes</a>
@@ -64,8 +65,8 @@
 	</div>
 
 </div>
-<div id="right">
-</div>
+
+<div id="right"></div>
 
 <g:javascript src='jquery/jquery.positionBy.js' plugin='appInfo'/>
 <g:javascript src='jquery/jquery.bgiframe.js' plugin='appInfo'/>

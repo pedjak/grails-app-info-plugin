@@ -1,17 +1,21 @@
+<g:set var='defaultSchema' value="${hibernateProperties.'hibernate.default_schema'}" />
+<g:set var='defaultCatalog' value="${hibernateProperties.'hibernate.default_catalog'}" />
+
 <head>
 <meta name='layout' content='appinfo' />
 <title>Hibernate Configuration</title>
 
 <g:javascript>
 $(document).ready(function() {
-	$('#propertiesTable').dataTable();
-	$('#mappingsTable').dataTable();
-	$('#importsTable').dataTable();
-	$('#auxTable').dataTable();
-	$('#namedQueriesTable').dataTable();
-	$('#namedSqlQueriesTable').dataTable();
-	$('#typeDefsTable').dataTable();
-	$('#filtersTable').dataTable();
+	$('#propertiesTable').dataTable( { 'bAutoWidth': false } );
+	$('#mappingsTable').dataTable( { 'bAutoWidth': false } );
+	$('#importsTable').dataTable( { 'bAutoWidth': false } );
+	$('#auxTable').dataTable( { 'bAutoWidth': false } );
+	$('#namedQueriesTable').dataTable( { 'bAutoWidth': false } );
+	$('#namedSqlQueriesTable').dataTable( { 'bAutoWidth': false } );
+	$('#typeDefsTable').dataTable( { 'bAutoWidth': false } );
+	$('#filtersTable').dataTable( { 'bAutoWidth': false } );
+	$('ul.tabs').tabs('div.panes > div')
 });
 </g:javascript>
 
@@ -21,8 +25,19 @@ $(document).ready(function() {
 
 <g:render template='/appinfo/hibernateCombos'/>
 
-<div id="propertiesTableHolder">
-<h2>Properties</h2>
+<ul class="tabs">
+	<li><a href="#">Properties</a></li>
+	<li><a href="#">Mappings</a></li>
+	<li><a href="#">Imports</a></li>
+	<li><a href="#">Aux. DB Objects</a></li>
+	<li><a href="#">Named Queries</a></li>
+	<li><a href="#">Named SQL Queries</a></li>
+	<li><a href="#">TypeDefs</a></li>
+</ul>
+
+<div class='panes'>
+
+<div id="propertiesTableHolder" class="tabPane">
 <table id="propertiesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -54,15 +69,9 @@ $(document).ready(function() {
 
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<g:set var='defaultSchema' value="${hibernateProperties.'hibernate.default_schema'}" />
-<g:set var='defaultCatalog' value="${hibernateProperties.'hibernate.default_catalog'}" />
-
-<div id="mappingsTableHolder">
-<h2>Mappings Info</h2>
+<div id="mappingsTableHolder" class="tabPane">
 <table id="mappingsTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -105,12 +114,9 @@ $(document).ready(function() {
 		</tr>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="importsTableHolder">
-<h2>Imports</h2>
+<div id="importsTableHolder" class="tabPane">
 <table id="importsTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -127,12 +133,9 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="auxTableHolder">
-<h2>Auxiliary Database Objects</h2>
+<div id="auxTableHolder" class="tabPane">
 <table id="auxTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -151,12 +154,9 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="namedQueriesTableHolder">
-<h2>Named Queries</h2>
+<div id="namedQueriesTableHolder" class="tabPane">
 <table id="namedQueriesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -193,12 +193,9 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="namedSqlQueriesTableHolder">
-<h2>Named SQL Queries</h2>
+<div id="namedSqlQueriesTableHolder" class="tabPane">
 <table id="namedSqlQueriesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -243,12 +240,9 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="typeDefsTableHolder">
-<h2>TypeDefs</h2>
+<div id="typeDefsTableHolder" class="tabPane">
 <table id="typeDefsTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -267,11 +261,9 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
 
-<br/>
-<br/>
-
-<div id="filtersTableHolder">
+<div id="filtersTableHolder" class="tabPane">
 <h2>Filter Definitions</h2>
 <table id="filtersTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
@@ -293,5 +285,8 @@ $(document).ready(function() {
 		</g:each>
 	</tbody>
 </table>
+</div>
+
+</div>
 
 </body>

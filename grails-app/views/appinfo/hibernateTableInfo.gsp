@@ -4,12 +4,13 @@
 
 <g:javascript>
 $(document).ready(function() {
-	$('#tableInfo').dataTable();
-	$('#columnSummaryTable').dataTable();
-	$('#primaryKeyTable').dataTable();
-	$('#foreignKeysTable').dataTable();
-	$('#uniqueKeysTable').dataTable();
-	$('#indexesTable').dataTable();
+	$('#tableInfo').dataTable( { 'bAutoWidth': false } );
+	$('#columnSummaryTable').dataTable( { 'bAutoWidth': false } );
+	$('#primaryKeyTable').dataTable( { 'bAutoWidth': false } );
+	$('#foreignKeysTable').dataTable( { 'bAutoWidth': false } );
+	$('#uniqueKeysTable').dataTable( { 'bAutoWidth': false } );
+	$('#indexesTable').dataTable( { 'bAutoWidth': false } );
+	$('ul.tabs').tabs('div.panes > div')
 });
 </g:javascript>
 
@@ -19,10 +20,29 @@ $(document).ready(function() {
 
 <g:render template='/appinfo/hibernateCombos'/>
 
-<p>${table.comment}</p>
-
-<div id="tableInfoHolder">
 <h2>Table '${table.name}'</h2>
+<g:if test='${table.comment}'><h2>${table.comment}</h2></g:if>
+
+<br/>
+
+<ul class="tabs">
+	<li><a href="#">Table</a></li>
+	<li><a href="#">Columns</a></li>
+	<li><a href="#">Primary Key</a></li>
+	<g:if test='${table.foreignKeyIterator.hasNext()}'>
+	<li><a href="#">Foreign Keys</a></li>
+	</g:if>
+	<g:if test='${table.uniqueKeyIterator.hasNext()}'>
+	<li><a href="#">Unique Keys</a></li>
+	</g:if>
+	<g:if test='${table.indexIterator.hasNext()}'>
+	<li><a href="#">Indexes</a></li>
+	</g:if>
+</ul>
+
+<div class='panes'>
+
+<div id="tableInfoHolder" class="tabPane">
 <table id="tableInfo" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead><tr><th>Name</th><th>Value</th></tr></thead>
 	<tbody>
@@ -39,12 +59,10 @@ $(document).ready(function() {
 		<tr><td>Drop SQL</td><td>${table.sqlDropString(dialect, defaultCatalog, defaultSchema)}</td></tr>
 	</tbody>
 </table>
-
-<br/>
+</div>
 
 <a name="column_summary"></a>
-<div id="columnSummaryTableHolder">
-<h2>Column Summary</h2>
+<div id="columnSummaryTableHolder" class="tabPane">
 <table id="columnSummaryTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -72,12 +90,10 @@ $(document).ready(function() {
 </g:each>
 	</tbody>
 </table>
-
-<br/>
+</div>
 
 <a name="primary_key"></a>
-<div id="primaryKeyTableHolder">
-<h2>Primary Key</h2>
+<div id="primaryKeyTableHolder" class="tabPane">
 <table id="primaryKeyTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -101,6 +117,7 @@ $(document).ready(function() {
 <g:each var='column' in='${table.primaryKey.columnIterator()}'>
 				<li><a href='#column_detail_${column.name}'>${column.name}<br/></a></li>
 </g:each>
+			</ul>
 			</td>
 		</tr>
 </g:if>
@@ -109,14 +126,14 @@ $(document).ready(function() {
 </g:else>
 	</tbody>
 </table>
+</div>
 
 <g:if test='${table.foreignKeyIterator.hasNext()}'>
 
 <br/>
 
 <a name="foreign_keys"></a>
-<div id="foreignKeysTableHolder">
-<h2>Foreign Keys</h2>
+<div id="foreignKeysTableHolder" class="tabPane">
 <table id="foreignKeysTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -153,6 +170,7 @@ $(document).ready(function() {
 </g:each>
 	</tbody>
 </table>
+</div>
 </g:if>
 
 <g:if test='${table.uniqueKeyIterator.hasNext()}'>
@@ -160,8 +178,7 @@ $(document).ready(function() {
 
 <a name="unique_keys"></a>
 
-<div id="uniqueKeysTableHolder">
-<h2>Unique Keys</h2>
+<div id="uniqueKeysTableHolder" class="tabPane">
 <table id="uniqueKeysTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -190,14 +207,14 @@ $(document).ready(function() {
 </g:each>
 	</tbody>
 </table>
+</div>
 </g:if>
 
 <g:if test='${table.indexIterator.hasNext()}'>
 <br/>
 
 <a name="indexes"></a>
-<div id="indexesTableHolder">
-<h2>Indexes</h2>
+<div id="indexesTableHolder" class="tabPane">
 <table id="indexesTable" cellpadding="0" cellspacing="0" border="0" class="display">
 	<thead>
 		<tr>
@@ -216,17 +233,17 @@ $(document).ready(function() {
 <g:each var='column' in='${index.columnIterator}'>
 				<a href='#column_detail_${column.name}'>${column.name}<br/></a>
 </g:each>
+			</td>
 			<td><div style='overflow: auto; height: 100px; width: 200px;'>${index.sqlCreateString(dialect, sessionFactory, defaultCatalog, defaultSchema)}</div></td>
 			<td>${index.sqlDropString(dialect, defaultCatalog, defaultSchema)}</td>
 			<td>${index.sqlConstraintString(dialect)}</td>
-			</td>
 		</tr>
 </g:each>
 	</tbody>
 </table>
+</div>
 </g:if>
 
-<br/><br/>
+</div>
 
 </body>
-
