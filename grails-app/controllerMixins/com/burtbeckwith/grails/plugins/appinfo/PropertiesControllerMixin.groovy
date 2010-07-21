@@ -2,33 +2,29 @@ package com.burtbeckwith.grails.plugins.appinfo
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
-import org.springframework.beans.BeanWrapper
-import org.springframework.beans.PropertyAccessorFactory
-import org.springframework.beans.SimpleTypeConverter
-import org.springframework.beans.TypeMismatchException
-
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
 class PropertiesControllerMixin {
 
-	private static final SimpleTypeConverter TYPE_CONVERTER = new SimpleTypeConverter()
-
 	def dataSource
 	def dataSourceUnproxied
+	def propertiesInfoService
 
 	/**
 	 * Shows the grails properties.
 	 */
 	def grailsProperties = {
-		render view: '/appinfo/grailsProperties', model: [grailsProperties: new TreeMap(CH.config.flatten())]
+		render view: '/appinfo/grailsProperties',
+		       model: [grailsProperties: new TreeMap(CH.config.flatten())]
 	}
 
 	/**
 	 * Shows the system property management page.
 	 */
 	def sysProperties = {
-		render view: '/appinfo/sysProperties', model: [sysprops: new TreeMap(System.properties)]
+		render view: '/appinfo/sysProperties',
+		       model: [sysprops: new TreeMap(System.properties)]
 	}
 
 	/**
@@ -38,12 +34,11 @@ class PropertiesControllerMixin {
 		for (String paramName : params.keySet()) {
 			if (paramName.startsWith('PROPERTY_')) {
 				String value = params[paramName]
-				if (value == null) {
-					continue
+				if (value != null) {
+					paramName -= 'PROPERTY_'
+					paramName = paramName.replaceAll('__DOT__', '.')
+					System.setProperty paramName, value
 				}
-				paramName -= 'PROPERTY_'
-				paramName = paramName.replaceAll('__DOT__', '.')
-				System.setProperty paramName, value
 			}
 		}
 
@@ -60,34 +55,9 @@ class PropertiesControllerMixin {
 	 * Shows the data source management page.
 	 */
 	def ds = {
-
-		def realDataSource = dataSourceUnproxied ?: dataSource
-
-		def propertyInfo = []
-
-		def allowedTypes = [int, boolean, String]
-
-		BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(realDataSource)
-		for (pd in beanWrapper.propertyDescriptors.sort { it.name }) {
-			if (!pd.readMethod || !pd.writeMethod) {
-				continue
-			}
-
-			Class<?> returnType = pd.readMethod.returnType
-			if (!returnType.primitive && !Number.isAssignableFrom(returnType) && returnType != String) {
-				continue
-			}
-
-			try {
-				propertyInfo << [name: pd.name,
-				                 value: pd.readMethod.invoke(realDataSource),
-				                 set: pd.writeMethod.name,
-				                 type: returnType.name]
-			}
-			catch (ignored) {}
-		}
-
-		render view: '/appinfo/ds', model: [dataSource: realDataSource, propertyInfo: propertyInfo]
+		render view: '/appinfo/ds',
+		       model: [dataSourceClassName: propertiesInfoService.realDataSource.getClass().name,
+		               propertyInfo: propertiesInfoService.datasourceInfo]
 	}
 
 	/**
@@ -95,54 +65,29 @@ class PropertiesControllerMixin {
 	 */
 	def updateDataSource = {
 
-		def realDataSource = dataSourceUnproxied ?: dataSource
-
-		def pds = [:]
-		BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(realDataSource)
-		for (pd in beanWrapper.propertyDescriptors) {
-			if (pd.writeMethod) {
-				pds[pd.writeMethod.name] = pd
-			}
-		}
-
 		for (String paramName : params.keySet().sort()) { // sort to force a copy
 			if (paramName.startsWith('_SETTER_set')) {
 				fixBoolean params, paramName
 			}
 		}
 
+		def values = [:]
 		for (String paramName : params.keySet()) {
-			if (!paramName.startsWith('SETTER_set')) {
-				continue
-			}
-
-			def value = params[paramName]
-			if (value == null) {
-				continue
-			}
-
-			paramName -= 'SETTER_'
-			def pd = pds[paramName]
-			if (pd.writeMethod.parameterTypes.length == 1) {
-				String oldValue = pd.readMethod.invoke(realDataSource)?.toString()
-				if (value == oldValue) {
-					continue
-				}
-
-				try {
-					value = TYPE_CONVERTER.convertIfNecessary(value, pd.writeMethod.parameterTypes[0])
-					pd.writeMethod.invoke realDataSource, value
-				}
-				catch (TypeMismatchException e) {
-					// ignore
+			if (paramName.startsWith('SETTER_set')) {
+				def value = params[paramName]
+				if (value != null) {
+					paramName -= 'SETTER_'
+					values[paramName] = value
 				}
 			}
 		}
 
+		propertiesInfoService.updateDataSource values
+
 		redirect action: 'ds', controller: params.controller
 	}
 
-	private void fixBoolean(params, String name) {
+	protected void fixBoolean(params, String name) {
 		String realParamName = name[1..-1]
 		params[realParamName] = 'on' == params[realParamName]
 	}

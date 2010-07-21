@@ -39,7 +39,6 @@
 		<delete dir='grails-app/controllers'/>
 		<delete dir='grails-app/domain'/>
 		<delete dir='grails-app/i18n'/>
-		<delete dir='grails-app/services'/>
 		<delete dir='grails-app/utils'/>
 		<delete dir='web-app/META-INF'/>
 		<delete dir='web-app/WEB-INF'/>
