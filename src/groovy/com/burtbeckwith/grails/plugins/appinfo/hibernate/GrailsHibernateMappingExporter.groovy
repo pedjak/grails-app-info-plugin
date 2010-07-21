@@ -63,7 +63,7 @@ class GrailsHibernateMappingExporter extends GenericExporter {
 	protected String getClassNameForFile(POJOClass element) {
 		return StringHelper.unqualify(element.decoratedObject.entityName)
 	}
-	
+
 	protected String getPackageNameForFile(POJOClass element) {
 		return StringHelper.qualifier(element.decoratedObject.className)
 	}

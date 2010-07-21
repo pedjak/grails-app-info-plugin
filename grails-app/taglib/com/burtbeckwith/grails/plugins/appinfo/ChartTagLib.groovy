@@ -39,17 +39,17 @@ var ${name}_barNames = ['${barNames.join("', '")}'];
 
 ${name}_dataTable.addColumn('string', 'Type');
 for (var i = 0; i  < ${name}_data.length; ++i) {
-	${name}_dataTable.addColumn('number', ${name}_data[i][0]);    
+	${name}_dataTable.addColumn('number', ${name}_data[i][0]);
 }
 
 ${name}_dataTable.addRows(${name}_barNames.length);
 
-for (var j = 0; j < ${name}_barNames.length; ++j) {    
-	${name}_dataTable.setValue(j, 0, ${name}_barNames[j]);    
+for (var j = 0; j < ${name}_barNames.length; ++j) {
+	${name}_dataTable.setValue(j, 0, ${name}_barNames[j]);
 }
 for (var i = 0; i  < ${name}_data.length; ++i) {
 	for (var j = 1; j  < ${name}_data[i].length; ++j) {
-		${name}_dataTable.setValue(j - 1, i + 1, ${name}_data[i][j]);    
+		${name}_dataTable.setValue(j - 1, i + 1, ${name}_data[i][j]);
 	}
 }
 
