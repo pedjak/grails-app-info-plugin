@@ -276,15 +276,11 @@ class HibernateInfoService {
 	}
 
 	/**
-	 * Resolve the Dialect. TODO use detector bean
+	 * Resolve the Dialect.
 	 * @return  the class
 	 */
 	Class<Dialect> getDialectClass() {
-		def dialectClass = CH.config.dataSource.dialect ?: HSQLDialect
-		if (!(dialectClass instanceof Class)) {
-			dialectClass = Class.forName(dialectClass, true, Thread.currentThread().contextClassLoader)
-		}
-		dialectClass
+		Dialect.getDialect(configuration.getProperties()).getClass()
 	}
 
 	/**
