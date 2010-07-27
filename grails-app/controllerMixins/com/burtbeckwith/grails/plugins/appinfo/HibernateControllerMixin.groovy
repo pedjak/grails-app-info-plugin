@@ -14,8 +14,7 @@ class HibernateControllerMixin {
 	def hibernate = {
 		def configuration = hibernateInfoService.configuration
 		render view: '/appinfo/hibernate',
-		       model: [configuration: configuration, // TODO needed?
-		               mappings: configuration.createMappings(),
+		       model: [mappings: configuration.createMappings(),
 		               dialect: hibernateInfoService.dialectClass.newInstance(),
 		               hibernateProperties: hibernateProperties] +
 		               hibernateInfoService.tablesAndEntities

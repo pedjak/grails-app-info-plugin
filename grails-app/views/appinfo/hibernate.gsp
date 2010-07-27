@@ -48,7 +48,7 @@ $(document).ready(function() {
 	<tbody>
 		<tr>
 			<td>Dialect</td>
-			<td>${configuration.properties.'hibernate.dialect'}</td>
+			<td>${hibernateProperties.'hibernate.dialect'}</td>
 		</tr>
 		<tr>
 			<td>Cache Provider Class</td>
