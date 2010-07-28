@@ -2,8 +2,6 @@
 <meta name='layout' content='appinfo' />
 <title>Loggers</title>
 
-<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs-accordion.css', plugin: 'appInfo')}"/>
-
 <g:javascript library="jquery" plugin="jquery" />
 <g:javascript>
 $(document).ready(function() {

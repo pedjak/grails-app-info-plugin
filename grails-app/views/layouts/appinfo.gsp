@@ -6,11 +6,12 @@
 <link rel='shortcut icon' href='${resource(dir: '/images', file: 'favicon.ico', plugin: 'none')}' type='image/x-icon' />
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'table.css', plugin: 'appInfo')}"/>
-<link rel="stylesheet" media="screen" href="${resource(dir: 'css', file: 'appinfo.css', plugin: 'appInfo')}"/>
-<link rel='stylesheet' media="screen" href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jdMenu.slate.css', plugin: 'appInfo')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs.css', plugin: 'appInfo')}"/>
+<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'tabs-accordion.css', plugin: 'appInfo')}"/>
+<link rel="stylesheet" media="screen" href="${resource(dir: 'css', file: 'appinfo.css', plugin: 'appInfo')}"/>
+<link rel='stylesheet' media="screen" href='${resource(dir: 'css', file: 'main.css', plugin: 'none')}' />
 
 <g:javascript library="jquery" plugin="jquery" />
 
