@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	'-//Hibernate/Hibernate Mapping DTD 3.0//EN'
+	'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+
+<hibernate-mapping>
+
+	<typedef name='myUserType' class='com.burtbeckwith.appinfo_test.MyUserType' />
+
+	<query name='gonzoBooks' cacheable='false' read-only='true'>
+		select author.books from Author author where name='Hunter S. Thompson'
+	</query>
+
+	<sql-query name='maxBookTitleLength'>
+		<return-scalar column='max_title' type='long'/>
+		select max(length(book.title)) max_title from book
+	</sql-query>
+
+	<filter-def name='soft-deleted' condition='deleted=true' />
+
+	<database-object>
+		<create>CREATE TABLE database_update (name VARCHAR(255) NOT NULL PRIMARY KEY)</create>
+		<drop>DROP TABLE IF EXISTS database_update</drop>
+		<dialect-scope name='org.hibernate.dialect.HSQLDialect' />
+	</database-object>
+
+</hibernate-mapping>
