@@ -45,6 +45,7 @@ class PropertiesInfoService {
 			}
 
 			try {
+				pd.readMethod.accessible = true
 				propertyInfo << [name: pd.name,
 									  value: pd.readMethod.invoke(realDataSource),
 									  set: pd.writeMethod.name,
@@ -74,16 +75,21 @@ class PropertiesInfoService {
 		values.each { name, value ->
 			def pd = pds[name]
 			if (pd.writeMethod.parameterTypes.length == 1) {
-				String oldValue = pd.readMethod.invoke(realDataSource)?.toString()
-				if (value != oldValue) {
-					try {
-						value = TYPE_CONVERTER.convertIfNecessary(value, pd.writeMethod.parameterTypes[0])
-						pd.writeMethod.invoke realDataSource, value
-					}
-					catch (TypeMismatchException e) {
-						// ignore
+				String oldValue
+				try {
+					pd.readMethod.accessible = true
+					oldValue = pd.readMethod.invoke(realDataSource)?.toString()
+					if (value != oldValue) {
+						try {
+							value = TYPE_CONVERTER.convertIfNecessary(value, pd.writeMethod.parameterTypes[0])
+							pd.writeMethod.invoke realDataSource, value
+						}
+						catch (TypeMismatchException e) {
+							// ignore
+						}
 					}
 				}
+				catch (ignored) {}
 			}
 		}
 

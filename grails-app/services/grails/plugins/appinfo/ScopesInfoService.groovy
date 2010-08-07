@@ -90,7 +90,13 @@ class ScopesInfoService {
 		BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(request)
 		for (pd in beanWrapper.propertyDescriptors.sort { it.name }) {
 			if (pd.readMethod && !REQUEST_IGNORED_NAMES.contains(pd.readMethod.name)) {
-				props[pd.readMethod.name] = pd.readMethod.invoke(request)
+				try {
+					pd.readMethod.accessible = true
+					props[pd.readMethod.name] = pd.readMethod.invoke(request)
+				}
+				catch (e) {
+					props[pd.readMethod.name] = 'An error occurred reading the value'
+				}
 			}
 		}
 		props
