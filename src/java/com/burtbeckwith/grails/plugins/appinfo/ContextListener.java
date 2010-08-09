@@ -51,7 +51,6 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 	 * @see javax.servlet.ServletContextListener#contextInitialized(
 	 * 	javax.servlet.ServletContextEvent)
 	 */
-	@Override
 	public void contextInitialized(final ServletContextEvent event) {
 		_log.debug("app startup");
 		event.getServletContext().setAttribute(START_TIME, new Date());
@@ -62,7 +61,6 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 	 * @see javax.servlet.ServletContextListener#contextDestroyed(
 	 * 	javax.servlet.ServletContextEvent)
 	 */
-	@Override
 	public void contextDestroyed(final ServletContextEvent event) {
 		_log.debug("app shutdown");
 	}
@@ -72,7 +70,6 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 	 * @see javax.servlet.http.HttpSessionListener#sessionCreated(
 	 * 	javax.servlet.http.HttpSessionEvent)
 	 */
-	@Override
 	public void sessionCreated(final HttpSessionEvent event) {
 		HttpSession session = event.getSession();
 		synchronized (this) {
@@ -86,7 +83,6 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 	 * @see javax.servlet.http.HttpSessionListener#sessionDestroyed(
 	 * 	javax.servlet.http.HttpSessionEvent)
 	 */
-	@Override
 	public void sessionDestroyed(final HttpSessionEvent event) {
 		HttpSession session = event.getSession();
 		synchronized (this) {
