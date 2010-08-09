@@ -106,11 +106,11 @@ class GrailsDocExporter extends AbstractExporter {
 	}
 
 	static final String OS_NAME = System.getProperty('os.name')
-	static final boolean IS_LINUX = OS_NAME.startsWith('Linux')
+	static final boolean IS_WINDOWS = OS_NAME.contains('Windows')
 
 	private void createImage(String dot, String outFileName, String extension) throws IOException {
 		String exeCmd = _dotExePath
-		if (!IS_LINUX) {
+		if (IS_WINDOWS) {
 			// Windows needs " " around file names actually we do not
 			// need it always, only when spaces are present
 			// but it does not hurt to use them always
