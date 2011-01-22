@@ -51,6 +51,7 @@
 					<li><g:link action='memory'>Memory</g:link></li>
 					<li><g:link action='sessions'>Sessions</g:link></li>
 					<li><g:link action='spring'>Spring Beans</g:link></li>
+					<li><g:link action='threadDump'>Thread Dump</g:link></li>
 				</ul>
 			</li>
 			<li><a class="accessible">Hibernate</a>

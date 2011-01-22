@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src/groovy"/>
 	<classpathentry kind="src" path="grails-app/conf"/>
 	<classpathentry kind="src" path="grails-app/controllerMixins"/>
+	<classpathentry kind="src" path="grails-app/i18n"/>
 	<classpathentry kind="src" path="grails-app/services"/>
 	<classpathentry kind="src" path="grails-app/taglib"/>
 	<classpathentry kind="src" path="grails-app/views"/>
