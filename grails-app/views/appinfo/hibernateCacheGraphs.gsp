@@ -5,7 +5,7 @@
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script>

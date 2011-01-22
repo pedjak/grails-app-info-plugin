@@ -5,7 +5,7 @@
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <p>
 	<img border="0" src="${createLink(action: 'hibernateTableImage')}" usemap="#tablegraph"/>

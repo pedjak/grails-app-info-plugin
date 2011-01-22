@@ -5,7 +5,7 @@
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <h2>Class Name: ${entity}</h2>
 

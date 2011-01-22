@@ -1,4 +1,4 @@
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <g:if test='${!statisticsEnabled}'>
 <div class='errors'>

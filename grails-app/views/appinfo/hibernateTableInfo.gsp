@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <h2>Table '${table.name}'</h2>
 <g:if test='${table.comment}'><h2>${table.comment}</h2></g:if>

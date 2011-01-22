@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <h4>${clazz.packageName}</h4>
 <h3>Entity : ${clazz.shortName} </h3>

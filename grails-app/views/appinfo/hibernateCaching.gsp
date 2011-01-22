@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <h2>Hibernate 2<sup>nd</sup>-level Caches</h2>
 <br/>

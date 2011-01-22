@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateCombos'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateCombos'/>
 
 <ul class="tabs">
 	<li><a href="#">Properties</a></li>
