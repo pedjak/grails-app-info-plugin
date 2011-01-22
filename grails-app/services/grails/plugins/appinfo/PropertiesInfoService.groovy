@@ -18,6 +18,7 @@ class PropertiesInfoService {
 
 	def dataSource
 	def dataSourceUnproxied
+	def grailsApplication
 
 	/**
 	 * Builds a list of maps containing the property name, value, setter method name, and
@@ -104,6 +105,12 @@ class PropertiesInfoService {
 	 * @return the real unproxied bean
 	 */
 	def getRealDataSource() {
+
+		def dataSourceRetrievalClosure = grailsApplication.config.grails.plugins.appinfo.dataSourceRetrievalClosure
+		if (dataSourceRetrievalClosure instanceof Closure) {
+			return dataSourceRetrievalClosure.call()
+		}
+
 		dataSourceUnproxied ?: dataSource
 	}
 }
