@@ -1,13 +1,12 @@
 import com.burtbeckwith.grails.plugins.appinfo.ContextListener
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class AppInfoGrailsPlugin {
 
-	String version = '0.3'
+	String version = '0.4'
 	String grailsVersion = '1.2 > *'
 	def dependsOn = ['dynamicController': '0.2.1 > *',
 	                 'googleVisualization': '0.2.1 > *',
-	                 'jquery': '1.4.2.5 > *']
+	                 'jquery': '1.4.3 > *']
 
 	String author = 'Burt Beckwith'
 	String authorEmail = 'burt@burtbeckwith.com'
@@ -16,7 +15,7 @@ class AppInfoGrailsPlugin {
 	String documentation = 'http://grails.org/plugin/app-info'
 
 	def doWithWebDescriptor = { xml ->
-		def useContextListener = CH.config.grails.plugins.appinfo.useContextListener
+		def useContextListener = application.config.grails.plugins.appinfo.useContextListener
 		if (useContextListener == null || (useContextListener instanceof Boolean && useContextListener)) {
 			def filterMapping = xml.'filter-mapping'
 			filterMapping[filterMapping.size() - 1] + {

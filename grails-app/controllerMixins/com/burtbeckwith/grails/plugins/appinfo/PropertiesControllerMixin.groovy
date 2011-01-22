@@ -1,7 +1,5 @@
 package com.burtbeckwith.grails.plugins.appinfo
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-
 /**
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
@@ -9,6 +7,7 @@ class PropertiesControllerMixin {
 
 	def dataSource
 	def dataSourceUnproxied
+	def grailsApplication
 	def propertiesInfoService
 
 	/**
@@ -16,7 +15,7 @@ class PropertiesControllerMixin {
 	 */
 	def grailsProperties = {
 		render view: '/appinfo/grailsProperties',
-		       model: [grailsProperties: new TreeMap(CH.config.flatten())]
+		       model: [grailsProperties: new TreeMap(grailsApplication.config.flatten())]
 	}
 
 	/**

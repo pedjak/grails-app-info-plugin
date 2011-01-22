@@ -1,7 +1,5 @@
 package grails.plugins.appinfo
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-
 import org.hibernate.cfg.Configuration
 import org.hibernate.dialect.Dialect
 import org.hibernate.dialect.HSQLDialect
@@ -264,7 +262,7 @@ class HibernateInfoService {
 	 * @return  the path
 	 */
 	String lookupDotPath() {
-		CH.config.grails.plugins.appinfo.dotPath ?: '/usr/bin/dot'
+		grailsApplication.config.grails.plugins.appinfo.dotPath ?: '/usr/bin/dot'
 	}
 
 	/**

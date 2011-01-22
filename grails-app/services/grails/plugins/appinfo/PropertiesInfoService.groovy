@@ -2,8 +2,6 @@ package grails.plugins.appinfo
 
 import org.apache.commons.dbcp.BasicDataSource
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.PropertyAccessorFactory
 import org.springframework.beans.SimpleTypeConverter

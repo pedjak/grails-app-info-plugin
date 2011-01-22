@@ -6,7 +6,6 @@ import com.burtbeckwith.grails.plugins.dynamiccontroller.DynamicControllerManage
 import com.burtbeckwith.grails.plugins.dynamiccontroller.DynamicDelegateController
 
 import org.apache.commons.lang.time.DurationFormatUtils
-import org.codehaus.groovy.grails.web.context.ServletContextHolder
 
 import org.springframework.beans.BeanWrapper
 import org.springframework.beans.PropertyAccessorFactory
@@ -19,6 +18,7 @@ class ScopesInfoService {
 	boolean transactional = false
 
 	def grailsApplication
+	def servletContext
 
 	static final List<String> REQUEST_IGNORED_NAMES = [
 		'getCookies', 'getInputStream', 'getParameterMap',
@@ -60,7 +60,6 @@ class ScopesInfoService {
 	 * @return  the values
 	 */
 	Map<String, Object> getServletContextValues() {
-		def servletContext = ServletContextHolder.servletContext
 		def attrNamesAndValues = [:]
 		servletContext.attributeNames.each { name ->
 			attrNamesAndValues[name] = servletContext.getAttribute(name)
@@ -73,7 +72,6 @@ class ScopesInfoService {
 	 * @return  the values
 	 */
 	Map getServletContextInitParams() {
-		def servletContext = ServletContextHolder.servletContext
 		def initParamNamesAndValues = [:]
 		servletContext.initParameterNames.each { name ->
 			initParamNamesAndValues[name] = servletContext.getInitParameter(name)
