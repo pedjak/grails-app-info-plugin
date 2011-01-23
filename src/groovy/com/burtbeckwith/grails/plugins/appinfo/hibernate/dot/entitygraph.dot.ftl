@@ -62,6 +62,9 @@ ${c2h.getHibernateTypeName(compProperty)?replace(".","_dot_")} [
 <#macro propertyEdges root properties>
 /* Property edges/nodes for ${root} */
 <#foreach property in properties>
+
+<#if property.getClass().name != 'org.hibernate.mapping.Backref'>
+
 <#if c2h.getHibernateTypeName(property)?exists>
 	${root} -> ${c2h.getHibernateTypeName(property)?replace(".","_dot_")} [
 		label="${property.name}"
@@ -73,6 +76,8 @@ ${c2h.getHibernateTypeName(compProperty)?replace(".","_dot_")} [
 <#if c2j.isComponent(property)>
 <@dumpComponent property/>
 </#if>
+
+</#if>  
 
 </#foreach>
 </#macro>
