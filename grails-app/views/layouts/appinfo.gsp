@@ -63,6 +63,15 @@
 					<li><g:link action='hibernateStatistics'>Statistics</g:link></li>
 				</ul>
 			</li>
+			<g:each var="additionalNavGroup" in="${grailsApplication.config.grails.plugins.appinfo.additional}">
+			<li><a class="accessible">${additionalNavGroup.key}</a>
+				<ul>
+					<g:each var="additionalNavItem" in="${additionalNavGroup.value}">
+						<li><g:link action='${additionalNavItem.key}'>${additionalNavItem.value}</g:link></li>
+					</g:each>
+				</ul>
+			</li>
+			</g:each>
 		</ul>
 	</div>
 
