@@ -143,7 +143,7 @@ class Log4jInfoService {
 			mkp.declareNamespace(log4j: 'http://jakarta.apache.org/log4j/')
 			log4j.configuration(debug: false) {
 
-				for (app in rootLogger.allAppenders) {
+				for (app in allAppenders) {
 					def values = extractValues(app, app.getClass().newInstance(), ['layout', 'errorHandler'])
 					appender(name: app.name, 'class': app.getClass().name) {
 						values.each { k, v ->
