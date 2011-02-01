@@ -1,12 +1,15 @@
-import com.burtbeckwith.grails.plugins.appinfo.ContextListener
+import java.util.List;
 
 class AppInfoGrailsPlugin {
 
 	String version = '0.4'
 	String grailsVersion = '1.2 > *'
-	def dependsOn = ['dynamicController': '0.2.1 > *',
-	                 'googleVisualization': '0.2.1 > *',
-	                 'jquery': '1.4.3 > *']
+	def dependsOn = [dynamicController: '0.2.1 > *',
+	                 googleVisualization: '0.2.1 > *',
+	                 jquery: '1.4.3 > *']
+	List pluginExcludes = [
+		'scripts/CreateAppInfoTestApps.groovy'
+	]
 
 	String author = 'Burt Beckwith'
 	String authorEmail = 'burt@burtbeckwith.com'

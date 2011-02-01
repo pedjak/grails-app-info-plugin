@@ -1,4 +1,4 @@
-<plugin name='app-info' version='0.3' grailsVersion='1.2 &gt; *'>
+<plugin name='app-info' version='0.4' grailsVersion='1.2 &gt; *'>
   <author>Burt Beckwith</author>
   <authorEmail>burt@burtbeckwith.com</authorEmail>
   <title>Application Info</title>
@@ -14,18 +14,20 @@
     <resource>com.burtbeckwith.grails.plugins.appinfo.PropertiesControllerMixin</resource>
     <resource>com.burtbeckwith.grails.plugins.appinfo.ScopesControllerMixin</resource>
     <resource>com.burtbeckwith.grails.plugins.appinfo.SpringControllerMixin</resource>
+    <resource>com.burtbeckwith.grails.plugins.appinfo.ThreadsControllerMixin</resource>
     <resource>grails.plugins.appinfo.HibernateInfoService</resource>
     <resource>grails.plugins.appinfo.Log4jInfoService</resource>
     <resource>grails.plugins.appinfo.MemoryInfoService</resource>
     <resource>grails.plugins.appinfo.PropertiesInfoService</resource>
     <resource>grails.plugins.appinfo.ScopesInfoService</resource>
     <resource>grails.plugins.appinfo.SpringInfoService</resource>
+    <resource>grails.plugins.appinfo.ThreadsInfoService</resource>
     <resource>com.burtbeckwith.grails.plugins.appinfo.ChartTagLib</resource>
   </resources>
   <dependencies>
     <plugin name='dynamicController' version='0.2.1 &gt; *' />
     <plugin name='googleVisualization' version='0.2.1 &gt; *' />
-    <plugin name='jquery' version='1.4.2.5 &gt; *' />
+    <plugin name='jquery' version='1.4.3 &gt; *' />
   </dependencies>
   <behavior />
 </plugin>
