@@ -2,7 +2,7 @@ import java.util.List;
 
 class AppInfoGrailsPlugin {
 
-	String version = '0.4'
+	String version = '0.4.1'
 	String grailsVersion = '1.2 > *'
 	def dependsOn = [dynamicController: '0.2.1 > *',
 	                 googleVisualization: '0.2.1 > *',
