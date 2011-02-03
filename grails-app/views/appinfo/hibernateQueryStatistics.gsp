@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateStatisticsHeader'/>
+<g:render plugin='appInfo' template='/appinfo/hibernateStatisticsHeader'/>
 
 <div id="statisticsHolder">
 <h2>Hibernate Query Statistics: '${query}'</h2>

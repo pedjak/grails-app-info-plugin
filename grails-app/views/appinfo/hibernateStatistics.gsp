@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 <body>
 
-<g:render template='/appinfo/hibernateStatisticsHeader'/><br/>
+<g:render plugin='appInfo' template='/appinfo/hibernateStatisticsHeader'/><br/>
 
 <ul class="tabs">
 	<li><a href="#">Hibernate Statistics</a></li>
