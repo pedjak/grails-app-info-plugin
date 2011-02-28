@@ -42,6 +42,7 @@
 					<li><g:link action='ds'>Data Source</g:link></li>
 					<li><g:link action='grailsProperties'>Grails Properties</g:link></li>
 					<li><g:link action='sysProperties'>System Properties</g:link></li>
+					<li><g:link action='getenv'>Environment Variables</g:link></li>
 				</ul>
 			</li>
 			<li><a class="accessible">Info</a>

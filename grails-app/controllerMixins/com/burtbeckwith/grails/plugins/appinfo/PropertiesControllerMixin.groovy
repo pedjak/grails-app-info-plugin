@@ -27,6 +27,14 @@ class PropertiesControllerMixin {
 	}
 
 	/**
+	 * Shows the environment property view page.
+	 */
+	def getenv = {
+		render view: '/appinfo/getenv',
+		       model: [getenv: new TreeMap(System.getenv())]
+	}
+
+	/**
 	 * Updates and/or adds system properties.
 	 */
 	def updateProperties = {
