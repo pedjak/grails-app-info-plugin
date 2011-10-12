@@ -3,7 +3,6 @@ package grails.plugins.appinfo
 import java.lang.management.ThreadMXBean
 import java.lang.management.ManagementFactory
 import java.lang.management.ThreadInfo
-import java.lang.management.MonitorInfo
 
 /**
  * @author Vasily Bogdan
@@ -26,34 +25,21 @@ class ThreadsInfoService {
 
 		ThreadInfo[] threadInfos = getAllThreadInfos()
 
-		ThreadInfo.metaClass.cpuTime = null
-		ThreadInfo.metaClass.userTime = null
-		ThreadInfo.metaClass.lockStackTrace = null
-
 		for (ThreadInfo threadInfo in threadInfos) {
 			if (threadManagementBean.threadCpuTimeSupported) {
-				threadInfo.cpuTime = nanosToMilis(threadManagementBean.getThreadCpuTime(threadInfo.threadId))
-				threadInfo.userTime = nanosToMilis(threadManagementBean.getThreadUserTime(threadInfo.threadId))
+				def cpuTime = nanosToMilis(threadManagementBean.getThreadCpuTime(threadInfo.threadId))
+				threadInfo.metaClass.getCpuTime = { -> cpuTime }
+				def userTime = nanosToMilis(threadManagementBean.getThreadUserTime(threadInfo.threadId))
+				threadInfo.metaClass.getUserTime = { ->  userTime }
 			}
 
+			def stackTrace 
 			if (threadInfo.lockOwnerId != -1) {
 				ThreadInfo lockerThreadInfo = threadInfos.find { ti -> ti.threadId == threadInfo.lockOwnerId }
-				MonitorInfo lockInfo = lockerThreadInfo?.lockedMonitors?.find {
-					MonitorInfo mi -> mi.identityHashCode == threadInfo.lockInfo?.identityHashCode
-				}
-
-				int index = 0
-				if (lockInfo) {
-					index = lockerThreadInfo.stackTrace.findIndexOf { it ->
-						it.equals(lockInfo.lockedStackFrame)
-					}
-				}
-				if (index == -1) {
-					index = 0
-				}
-
-				threadInfo.lockStackTrace = lockerThreadInfo.stackTrace as List
-			}
+				stackTrace = lockerThreadInfo.stackTrace as List
+			} 
+			threadInfo.metaClass.getLockStackTrace = { -> stackTrace }
+			
 		}
 
 		threadDump.allThreads = threadInfos
@@ -62,7 +48,17 @@ class ThreadsInfoService {
 	}
 
 	ThreadInfo[] getAllThreadInfos() {
-		threadManagementBean.dumpAllThreads(threadManagementBean.isObjectMonitorUsageSupported(),
-			threadManagementBean.isSynchronizerUsageSupported())
+		// check if we are running under Java 1.5 
+		if (threadManagementBean.metaClass.methods.find { it.name == "dumpAllThreads" }) {
+			threadManagementBean.dumpAllThreads(threadManagementBean.isObjectMonitorUsageSupported(),
+				threadManagementBean.isSynchronizerUsageSupported())
+		} else {
+			def infos = threadManagementBean.getThreadInfo(threadManagementBean.getAllThreadIds())
+			infos.each {
+				// add this methods because _threadInfo wants to access them
+				it.metaClass.getLockedMonitors = { -> null  }
+				it.metaClass.getLockedSynchronizers = { -> null }
+			}
+		}
 	}
 }
