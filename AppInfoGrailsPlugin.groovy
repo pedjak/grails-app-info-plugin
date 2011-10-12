@@ -2,7 +2,7 @@ import com.burtbeckwith.grails.plugins.appinfo.ContextListener
 
 class AppInfoGrailsPlugin {
 
-	String version = '0.4.3'
+	String version = '0.4.3-PK'
 	String grailsVersion = '1.2 > *'
 	def dependsOn = [dynamicController: '0.2.1 > *',
 	                 googleVisualization: '0.2.1 > *',
