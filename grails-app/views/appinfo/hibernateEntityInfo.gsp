@@ -66,7 +66,7 @@ ${clazz.qualifiedDeclarationName}
 
 <g:if test='${dochelper.getComponentPOJO(clazz.identifierProperty)}'>
 <g:set var='compoclass' value='${dochelper.getComponentPOJO(clazz.identifierProperty)}'/>
-<g:each var'prop' in='${compoclass.allPropertiesIterator}'>
+<g:each var='prop' in='${compoclass.allPropertiesIterator}'>
 	<g:set var='columnIterator' value='${prop.value.columnIterator}'/>
 	<g:set var='rowspan' value='${prop.value.columnSpan}'/>
 		<tr>
