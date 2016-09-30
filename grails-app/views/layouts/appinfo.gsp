@@ -15,6 +15,8 @@
 
 <g:javascript library="jquery" plugin="jquery" />
 
+<r:layoutResources/>
+
 <g:layoutHead />
 
 </head>
